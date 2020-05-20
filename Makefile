@@ -12,7 +12,6 @@ clean:
 	lein clean
 
 target/uberjar/locking_test-$(VERSION)-standalone.jar: $(SRC)
-	cd sci-reflector; GRAALVM_HOME=$(GRAALVM_HOME) lein install
 	GRAALVM_HOME=$(GRAALVM_HOME) lein uberjar
 
 uberjar: target/uberjar/locking_test-$(VERSION)-standalone.jar
