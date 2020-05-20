@@ -9,6 +9,6 @@
              :bindings {}
              :imports {}
              :classes {}}]
-    (-> "(inc 1)"
+    (-> "1"
         (sci/eval-string ctx)
         println)))
