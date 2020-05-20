@@ -1,7 +1,7 @@
 GRAALVM_HOME = $(HOME)/graalvm-ce-java11-20.2.0-dev
 # works graalvm-ce-java11-19.3.1
-JAVA_HOME = $(GRAALVM)
-PATH = $(GRAALVM)/bin:$(shell echo $$PATH)
+JAVA_HOME = $(GRAALVM_HOME)
+PATH = $(GRAALVM_HOME)/bin:$(shell echo $$PATH)
 SRC = src/locking_test/core.clj
 VERSION = 0.1.0-SNAPSHOT
 
