@@ -25,6 +25,9 @@
     (set! root v))
   clojure.lang.IDeref
   (deref [this] root)
+
+  clojure.lang.IMeta
+  (clojure.core/meta [_] meta)
   clojure.lang.IReference
   (alterMeta [this f args]
     (with-writeable-var this meta
