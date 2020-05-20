@@ -1,5 +1,7 @@
-GRAALVM = $(HOME)/graalvm-ce-java11-20.2.0-dev
+GRAALVM_HOME = $(HOME)/graalvm-ce-java11-20.2.0-dev
 # works graalvm-ce-java11-19.3.1
+JAVA_HOME = $(GRAALVM)
+PATH = $(GRAALVM)/bin:$(shell echo $$PATH)
 SRC = src/locking_test/core.clj
 VERSION = 0.1.0-SNAPSHOT
 
@@ -10,14 +12,15 @@ clean:
 	lein clean
 
 target/uberjar/locking_test-$(VERSION)-standalone.jar: $(SRC)
-	GRAALVM_HOME=$(GRAALVM) lein uberjar
+	cd sci-reflector; GRAALVM_HOME=$(GRAALVM_HOME) lein install
+	GRAALVM_HOME=$(GRAALVM_HOME) lein uberjar
 
 uberjar: target/uberjar/locking_test-$(VERSION)-standalone.jar
 
 build/locking_test: target/uberjar/locking_test-$(VERSION)-standalone.jar
 	-mkdir build
 	export
-	$(GRAALVM)/bin/native-image \
+	$(GRAALVM_HOME)/bin/native-image \
 		-jar target/uberjar/locking_test-$(VERSION)-standalone.jar \
 		-H:Name=build/locking_test \
 		-H:+ReportExceptionStackTraces \
